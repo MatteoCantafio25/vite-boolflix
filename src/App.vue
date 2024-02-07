@@ -1,4 +1,6 @@
 <script>
+import axios from 'axios';
+const endpointMovie = "https://api.themoviedb.org/3/search/movie";
 export default {
   name: "Vite Boolflix",
 };
@@ -8,6 +10,6 @@ export default {
   <!-- Template Here -->
 </template>
 
-<style lang="scss" scoped >
+<style lang="scss">
 /* Style here */
 </style>
