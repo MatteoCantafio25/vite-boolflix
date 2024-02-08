@@ -2,9 +2,11 @@
 import axios from 'axios';
 import { store } from '@/components/data/store.js';
 import { apiKey } from './components/data/index.js';
-import { endpoint } from './components/data/index.js';
+import { endpointMovie } from './components/data/index.js';
+import { endpointSeries } from './components/data/index.js';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
+
 export default {
   name: "Vite Boolflix",
   components: {
@@ -13,24 +15,33 @@ export default {
   },
 
   methods: {
-    fetchMovies(endpoint) {
-      axios.get(endpoint).then(res => {
+    fetchMovies(endpointMovie) {
+      axios.get(endpointMovie).then(res => {
         store.movies = res.data.results;
       })
     },
-    searchMovies(term) {
-      console.log("devo cercare...", term);
-      const searchEndpointMovie = `${endpoint}?api_key=${apiKey}&query=${term}&language=it-IT`;
-      this.fetchMovies(searchEndpointMovie);
-      console.log(searchEndpointMovie);
-    }
-  },
 
-};
+    fetchSeries(endpointSeries) {
+      axios.get(endpointSeries).then(res => {
+        store.series = res.data.results;
+      })
+    },
+
+    searchProduction(term) {
+      console.log("devo cercare...", term);
+      const searchEndpointMovie = `${endpointMovie}?api_key=${apiKey}&query=${term}&language=it-IT`;
+      this.fetchMovies(searchEndpointMovie);
+
+      const searchEndpointSeries = `${endpointSeries}?api_key=${apiKey}&query=${term}&language=it-IT`;
+      this.fetchSeries(searchEndpointSeries);
+
+    },
+  }
+}
 </script>
 
 <template>
-  <AppHeader @search-movies="searchMovies" />
+  <AppHeader @search-production="searchProduction" />
   <AppMain />
 </template>
 
