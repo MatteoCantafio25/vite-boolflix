@@ -31,7 +31,7 @@ export default {
 
 <style lang="scss" scoped >
 .production-base {
-    max-width: 1400px;
+    max-width: 1450px;
     margin: 0 auto;
 
     h4 {

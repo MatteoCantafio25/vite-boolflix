@@ -4,6 +4,9 @@ export default {
     name: "ProductionCard",
     data: () => ({
         imgBaseEndpoint,
+        stars: 5,
+        selectedStars: 3,
+        minStars: 1,
     }),
     props: {
         production: Object,
@@ -26,8 +29,17 @@ export default {
             return `${this.imgBaseEndpoint}${this.production.poster_path}`;
         },
 
+        vote() {
+            return this.production.vote_average;
+        },
+
+
+        hasPoster() {
+            return !this.production.poster_path;
+        },
+
         hasFlag() {
-            const flags = ["it", "en"];
+            const flags = ["it", "en", "es", "de", "fr", "ko", "ja", "cn", "pt"];
             return flags.includes(this.lang);
         },
 
@@ -36,6 +48,28 @@ export default {
             console.log(url.href);
             return url.href;
         },
+    },
+
+    methods: {
+        getRealVote(vote) {
+            if (!(vote) || vote < 1) {
+                return "Non ci sono ancora valutazioni"
+            } else {
+                const wholeNumber = Math.floor(vote)
+                if (wholeNumber >= 1 && wholeNumber <= 2) {
+                    return 1;
+                } else if (wholeNumber > 2 && wholeNumber <= 4) {
+                    return 2;
+                } else if (wholeNumber > 4 && wholeNumber <= 6) {
+                    return 3;
+                } else if (wholeNumber > 6 && wholeNumber <= 8) {
+                    return 4;
+                } else if (wholeNumber > 8 && wholeNumber <= 10) {
+                    return 5;
+                }
+            }
+        },
+
     }
 };
 
@@ -44,14 +78,23 @@ export default {
 <template>
     <div class="production-card">
         <ul class="list-unstyled">
-            <img :src="poster" :alt="title">
+            <li>
+                <img v-if="hasPoster" src="`../../assets/img/No-Image-Placeholder.svg.png`" :alt="title" class="poster-img">
+                <img v-else :src="poster" :alt="title" class="poster-img">
+            </li>
             <li>{{ title }}</li>
             <li>{{ originalTitle }}</li>
-            <li>
+            <li class="flag">
                 <img v-if="hasFlag" :src="flagSrc" :alt="lang">
                 <span v-else> {{ lang }}</span>
             </li>
-            <li>{{ production.vote_avarage }}</li>
+            <li v-if="getRealVote(vote) > minStars">
+                <i v-for="(star, i) in stars" :key="i"
+                    :class="{ 'fas fa-star': star <= getRealVote(vote), 'far fa-star': star > getRealVote(vote) }"></i>
+            </li>
+            <li v-else>
+                <i v-for="i in stars" :key="i" class="far fa-star"></i>
+            </li>
         </ul>
     </div>
 </template>
@@ -59,9 +102,14 @@ export default {
 <style lang="scss" scoped >
 .production-card {
     color: white;
+}
 
-    ul li img {
-        max-width: 40px;
-    }
+.poster-img {
+    height: 513px;
+    width: 342px;
+}
+
+.flag img {
+    max-width: 40px;
 }
 </style>

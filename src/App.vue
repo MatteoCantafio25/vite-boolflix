@@ -6,12 +6,14 @@ import { endpointMovie } from './components/data/index.js';
 import { endpointSeries } from './components/data/index.js';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 export default {
   name: "Vite Boolflix",
   components: {
     AppHeader,
     AppMain,
+    FontAwesomeIcon
   },
 
   methods: {
