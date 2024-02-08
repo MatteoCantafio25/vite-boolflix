@@ -1,5 +1,6 @@
 const apiKey = '260816bf91195a58639479514a2f1b83';
-const endpoint = 'https://api.themoviedb.org/3/search/movie';
+const endpointMovie = 'https://api.themoviedb.org/3/search/movie';
+const endpointSeries = 'https://api.themoviedb.org/3/search/tv'
 const imgBaseEndpoint = 'https://image.tmdb.org/t/p/w342';
 
-export { apiKey, endpoint, imgBaseEndpoint };
+export { apiKey, endpointMovie, imgBaseEndpoint, endpointSeries }; 

@@ -1,11 +1,15 @@
 <script>
 import SearchForm from './SearchForm.vue';
+import { store } from './data/store.js';
 export default {
     name: "AppHeader",
+    data: () => ({
+        store,
+    }),
     components: {
         SearchForm,
     },
-    emits: ['search-movies'],
+    emits: ['search-production']
 };
 </script>
 
@@ -16,7 +20,7 @@ export default {
                 <h1>BOOLFLIX</h1>
             </div>
             <div class="right-header pe-3">
-                <SearchForm placeholder="Cerca Un film o serie TV" @submit-search="$emit('search-movies', $event)" />
+                <SearchForm placeholder="Cerca Un film o serie TV" @submit-search="$emit('search-production', $event)" />
             </div>
         </div>
     </header>
