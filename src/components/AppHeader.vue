@@ -28,9 +28,21 @@ export default {
 
 <style lang="scss" scoped >
 /* Style here */
+
+header {
+    background-color: black;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
 .header-container {
     height: 10vh;
     background-color: black;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .left-header {

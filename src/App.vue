@@ -44,5 +44,10 @@ export default {
 </template>
 
 <style lang="scss">
-/* Style here */
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 </style>

@@ -37,6 +37,10 @@ export default {
             return !this.production.poster_path;
         },
 
+        description() {
+            return this.production.overview
+        },
+
         hasFlag() {
             const flags = ["it", "en", "es", "de", "fr", "ko", "ja", "cn", "pt"];
             return flags.includes(this.lang);
@@ -71,38 +75,72 @@ export default {
 
 <template>
     <div class="production-card">
-        <ul class="list-unstyled">
-            <li>
-                <img v-if="hasPoster" src="`../../assets/img/boolflix-image-not-found.png`" :alt="title" class="poster-img">
-                <img v-else :src="poster" :alt="title" class="poster-img">
-            </li>
-            <li>{{ title }}</li>
-            <li>{{ originalTitle }}</li>
-            <li class="flag">
-                <img v-if="hasFlag" :src="flagSrc" :alt="lang">
-                <span v-else> {{ lang }}</span>
-            </li>
-            <li v-if="getRealVote(vote) > minStars">
-                <i v-for="(star, i) in stars" :key="i"
-                    :class="{ 'fas fa-star': star <= getRealVote(vote), 'far fa-star': star > getRealVote(vote) }"></i>
-            </li>
-            <li v-else>
-                <i v-for="i in stars" :key="i" class="far fa-star"></i>
-            </li>
-        </ul>
+        <div class="poster-container">
+            <img v-if="hasPoster" src="`../../assets/img/boolflix-image-not-found.png`" :alt="title" class="poster-img">
+            <img v-else :src="poster" :alt="title" class="poster-img">
+
+            <div class="content d-flex align-items-center justify-content-center flex-column gap-2 text-center">
+                <h4>{{ title }}</h4>
+                <p>{{ originalTitle }}</p>
+                <div class="flag">
+                    <img v-if="hasFlag" :src="flagSrc" :alt="lang">
+                    <span v-else> {{ lang }}</span>
+                </div>
+                <div v-if="getRealVote(vote) > minStars">
+                    <i v-for="(star, i) in stars" :key="i"
+                        :class="{ 'fas fa-star': star <= getRealVote(vote), 'far fa-star': star > getRealVote(vote) }"></i>
+                </div>
+                <div v-else>
+                    <i v-for="i in stars" :key="i" class="far fa-star"></i>
+                </div>
+                <div class="description">
+                    <p>{{ description }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped >
 .production-card {
     color: white;
+    width: 342px;
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.poster-container {
+    position: relative;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: 0.5s;
+    overflow-y: auto;
+}
+
+.content:hover {
+    opacity: 1;
 }
 
 .poster-img {
+    width: 342px;
     height: 513px;
 }
 
 .flag img {
     max-width: 40px;
+}
+
+.description {
+    font-size: 0.8rem;
 }
 </style>
