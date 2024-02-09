@@ -14,14 +14,14 @@ export default {
 
 <template>
     <div class="production-base">
-        <h4>MOVIES</h4>
-        <div class="row row-cols-4 border-white">
+        <h4 v-if="store.movies.length">MOVIES</h4>
+        <div class="row row-cols-4">
             <div class="col" v-for="movie in store.movies" :key="movie.id">
                 <ProductionCard :production="movie" />
             </div>
         </div>
-        <h4>SERIES</h4>
-        <div class="row row-cols-4 border-white">
+        <h4 v-if="store.series.length">SERIES</h4>
+        <div class="row row-cols-4">
             <div class="col" v-for="serie in store.series" :key="serie.id">
                 <ProductionCard :production="serie" />
             </div>

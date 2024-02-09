@@ -5,7 +5,6 @@ export default {
     data: () => ({
         imgBaseEndpoint,
         stars: 5,
-        selectedStars: 3,
         minStars: 1,
     }),
     props: {
@@ -52,24 +51,19 @@ export default {
 
     methods: {
         getRealVote(vote) {
-            if (!(vote) || vote < 1) {
-                return "Non ci sono ancora valutazioni"
-            } else {
-                const wholeNumber = Math.floor(vote)
-                if (wholeNumber >= 1 && wholeNumber <= 2) {
-                    return 1;
-                } else if (wholeNumber > 2 && wholeNumber <= 4) {
-                    return 2;
-                } else if (wholeNumber > 4 && wholeNumber <= 6) {
-                    return 3;
-                } else if (wholeNumber > 6 && wholeNumber <= 8) {
-                    return 4;
-                } else if (wholeNumber > 8 && wholeNumber <= 10) {
-                    return 5;
-                }
+            const wholeNumber = Math.floor(vote)
+            if (wholeNumber >= 1 && wholeNumber <= 2) {
+                return 1;
+            } else if (wholeNumber > 2 && wholeNumber <= 4) {
+                return 2;
+            } else if (wholeNumber > 4 && wholeNumber <= 6) {
+                return 3;
+            } else if (wholeNumber > 6 && wholeNumber <= 8) {
+                return 4;
+            } else if (wholeNumber > 8 && wholeNumber <= 10) {
+                return 5;
             }
         },
-
     }
 };
 
@@ -79,7 +73,7 @@ export default {
     <div class="production-card">
         <ul class="list-unstyled">
             <li>
-                <img v-if="hasPoster" src="`../../assets/img/No-Image-Placeholder.svg.png`" :alt="title" class="poster-img">
+                <img v-if="hasPoster" src="`../../assets/img/boolflix-image-not-found.png`" :alt="title" class="poster-img">
                 <img v-else :src="poster" :alt="title" class="poster-img">
             </li>
             <li>{{ title }}</li>
@@ -106,7 +100,6 @@ export default {
 
 .poster-img {
     height: 513px;
-    width: 342px;
 }
 
 .flag img {
