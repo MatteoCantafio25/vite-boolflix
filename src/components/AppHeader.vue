@@ -17,7 +17,7 @@ export default {
     <header>
         <div class="header-container d-flex align-items-center justify-content-between">
             <div class="left-header ps-3">
-                <h1>BOOLFLIX</h1>
+                <img src="../assets/img/boolflix-logo.png" alt="boolflix">
             </div>
             <div class="right-header pe-3">
                 <SearchForm placeholder="Cerca Un film o serie TV" @submit-search="$emit('search-production', $event)" />
@@ -35,7 +35,11 @@ export default {
 
 .left-header {
     h1 {
-        color: red;
+        color: #ED2024;
+    }
+
+    img {
+        max-width: 160px;
     }
 }
 </style>
