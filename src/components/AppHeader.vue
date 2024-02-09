@@ -41,7 +41,7 @@ header {
 .header-container {
     height: 10vh;
     background-color: black;
-    max-width: 1600px;
+    max-width: 1700px;
     margin: 0 auto;
 }
 

@@ -76,8 +76,10 @@ export default {
 <template>
     <div class="production-card">
         <div class="poster-container">
-            <img v-if="hasPoster" src="`../../assets/img/boolflix-image-not-found.png`" :alt="title" class="poster-img">
-            <img v-else :src="poster" :alt="title" class="poster-img">
+            <div>
+                <img v-if="hasPoster" src="`../../assets/img/boolflix-image-not-found.png`" :alt="title" class="poster-img">
+                <img v-else :src="poster" :alt="title" class="poster-img">
+            </div>
 
             <div class="content d-flex align-items-center justify-content-center flex-column gap-2 text-center">
                 <h4>{{ title }}</h4>
