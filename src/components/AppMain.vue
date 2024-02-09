@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-    <main class="pt-5">
+    <main>
         <ProductionList />
     </main>
 </template>
@@ -18,5 +18,8 @@ export default {
 main {
     background-color: #1B1B1B;
     min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 </style>
